@@ -1,3 +1,5 @@
+import "src/styles/globals.css";
+
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 
