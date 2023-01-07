@@ -1,10 +1,8 @@
-import type { FC } from "react";
+import type { ComponentProps, FC } from "react";
 import { SiZenn } from "react-icons/si";
 
-type Props = {
-  className?: string;
-};
+type Props = ComponentProps<typeof SiZenn>;
 
-export const ZennIcon: FC<Props> = ({ className = "" }) => {
-  return <SiZenn className={`text-[#3EA8FF] ${className}`} />;
+export const ZennIcon: FC<Props> = ({ className = "", ...rest }) => {
+  return <SiZenn className={`text-[#3EA8FF] ${className}`} {...rest} />;
 };

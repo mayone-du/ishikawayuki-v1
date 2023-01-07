@@ -1,10 +1,8 @@
-import type { FC } from "react";
+import type { ComponentProps, FC } from "react";
 import { MdArticle } from "react-icons/md";
 
-type Props = {
-  className?: string;
-};
+type Props = ComponentProps<typeof MdArticle>;
 
-export const ArticleIcon: FC<Props> = ({ className = "" }) => {
-  return <MdArticle className={`text-orange-400 ${className}`} />;
+export const ArticleIcon: FC<Props> = ({ className = "", ...rest }) => {
+  return <MdArticle className={`text-orange-400 ${className}`} {...rest} />;
 };

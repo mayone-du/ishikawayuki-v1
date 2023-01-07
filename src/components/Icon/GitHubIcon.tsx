@@ -1,10 +1,8 @@
-import type { FC } from "react";
+import type { ComponentProps, FC } from "react";
 import { SiGithub } from "react-icons/si";
 
-type Props = {
-  className?: string;
-};
+type Props = ComponentProps<typeof SiGithub>;
 
-export const GitHubIcon: FC<Props> = ({ className = "" }) => {
-  return <SiGithub className={`text-[#171515] ${className}`} />;
+export const GitHubIcon: FC<Props> = ({ className = "", ...rest }) => {
+  return <SiGithub className={`text-[#171515] ${className}`} {...rest} />;
 };

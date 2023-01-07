@@ -1,10 +1,8 @@
-import type { FC } from "react";
+import type { ComponentProps, FC } from "react";
 import { MdHome } from "react-icons/md";
 
-type Props = {
-  className?: string;
-};
+type Props = ComponentProps<typeof MdHome>;
 
-export const HomeIcon: FC<Props> = ({ className = "" }) => {
-  return <MdHome className={`text-stone-400 ${className}`} />;
+export const HomeIcon: FC<Props> = ({ className = "", ...rest }) => {
+  return <MdHome className={`text-stone-400 ${className}`} {...rest} />;
 };

@@ -1,10 +1,10 @@
-import type { FC } from "react";
+import type { ComponentProps, FC } from "react";
 import { RiAccountCircleFill } from "react-icons/ri";
 
-type Props = {
-  className?: string;
-};
+type Props = ComponentProps<typeof RiAccountCircleFill>;
 
-export const ProfileIcon: FC<Props> = ({ className = "" }) => {
-  return <RiAccountCircleFill className={`text-sky-400 ${className}`} />;
+export const ProfileIcon: FC<Props> = ({ className = "", ...rest }) => {
+  return (
+    <RiAccountCircleFill className={`text-sky-400 ${className}`} {...rest} />
+  );
 };
