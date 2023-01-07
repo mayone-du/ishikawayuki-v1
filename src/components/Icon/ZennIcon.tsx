@@ -5,8 +5,6 @@ type Props = {
   className?: string;
 };
 
-const LOGO_COLOR = "#3EA8FF";
-
 export const ZennIcon: FC<Props> = ({ className = "" }) => {
-  return <SiZenn className={`${className} text-[${LOGO_COLOR}]`} />;
+  return <SiZenn className={`${className} text-[#3EA8FF]`} />;
 };

@@ -5,8 +5,6 @@ type Props = {
   className?: string;
 };
 
-const LOGO_COLOR = "#171515";
-
 export const GitHubIcon: FC<Props> = ({ className = "" }) => {
-  return <SiGithub className={`${className} text-[${LOGO_COLOR}]`} />;
+  return <SiGithub className={`${className} text-[#171515]`} />;
 };

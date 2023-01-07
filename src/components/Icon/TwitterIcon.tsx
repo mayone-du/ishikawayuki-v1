@@ -5,8 +5,6 @@ type Props = {
   className?: string;
 };
 
-const LOGO_COLOR = "#1DA1F2";
-
 export const TwitterIcon: FC<Props> = ({ className = "" }) => {
-  return <SiTwitter className={`${className} text-[${LOGO_COLOR}]`} />;
+  return <SiTwitter className={`${className} text-[#1DA1F2]`} />;
 };
