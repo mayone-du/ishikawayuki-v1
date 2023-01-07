@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .neumorphism-container-preset {
+    @apply relative flex justify-center items-center bg-neumorphism-bg hover:scale-105 transition before:block before:w-full before:h-full active:before:shadow-[inset_-1px_-1px_3px_rgba(255,_255,_255,_0.7),_inset_1px_1px_3px_rgba(174,_174,_192,_0.15)] before:transition active:before:bg-neumorphism-active-bg;
+  }
+  .neumorphism-inner {
+    @apply absolute flex items-center justify-center flex-col;
+  }
+
+  .neumorphism-container-xs {
+    @apply p-[2px] shadow-[-1px_-1px_3px_#FFFFFF,_1.5px_1.5px_3px_rgba(174,_174,_192,_0.4)] rounded-md before:rounded-md;
+  }
+  .neumorphism-container-sm {
+    @apply p-[2px] shadow-[-2px_-2px_6px_#FFFFFF,_3px_3px_6px_rgba(174,_174,_192,_0.4)] rounded-md before:rounded-md;
+  }
+  .neumorphism-container-md {
+    @apply p-[3px] shadow-[-4px_-4px_12px_#FFFFFF,_6px_6px_12px_rgba(174,_174,_192,_0.4)] rounded-lg before:rounded-lg;
+  }
+  .neumorphism-container-lg {
+    @apply p-[4px] shadow-[-10px_-10px_30px_#FFFFFF,_15px_15px_30px_rgba(174,_174,_192,_0.4)] rounded-xl before:rounded-xl;
+  }
+  .neumorphism-container-xl {
+    @apply p-[5px] shadow-[-10px_-10px_30px_#FFFFFF,_15px_15px_30px_rgba(174,_174,_192,_0.4)] rounded-2xl before:rounded-2xl;
+  }
+}
