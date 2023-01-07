@@ -6,5 +6,5 @@ type Props = {
 };
 
 export const ZennIcon: FC<Props> = ({ className = "" }) => {
-  return <SiZenn className={`${className} text-[#3EA8FF]`} />;
+  return <SiZenn className={`text-[#3EA8FF] ${className}`} />;
 };

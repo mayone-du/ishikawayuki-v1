@@ -6,5 +6,5 @@ type Props = {
 };
 
 export const GitHubIcon: FC<Props> = ({ className = "" }) => {
-  return <SiGithub className={`${className} text-[#171515]`} />;
+  return <SiGithub className={`text-[#171515] ${className}`} />;
 };

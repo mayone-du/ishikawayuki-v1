@@ -6,5 +6,5 @@ type Props = {
 };
 
 export const TwitterIcon: FC<Props> = ({ className = "" }) => {
-  return <SiTwitter className={`${className} text-[#1DA1F2]`} />;
+  return <SiTwitter className={`text-[#1DA1F2] ${className}`} />;
 };
