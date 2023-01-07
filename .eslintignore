@@ -6,3 +6,4 @@ next.config.js
 jest.config.js
 tailwind.config.js
 postcss.config.js
+/src/lib/$path.ts
