@@ -22,4 +22,10 @@ export const CONSTANTS = {
     DATA_SOURCE:
       "https://cdn.jsdelivr.net/npm/emoji-datasource@14.0.0/emoji.json",
   },
+  origin: {
+    HOST:
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000"
+        : "https://ishikawayuki-v1.vercel.app",
+  },
 } as const;

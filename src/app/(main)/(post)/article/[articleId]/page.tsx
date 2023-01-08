@@ -37,7 +37,7 @@ const Page: NextPage<{ params: Props }> = async ({ params: { articleId } }) => {
     return str.replace(`${deletable} `, "");
   });
 
-  const emojiRes = await fetch("http://localhost:3000/api/emoji", {
+  const emojiRes = await fetch(`${CONSTANTS.origin.HOST}/api/emoji`, {
     body: emoji,
     method: "POST",
   });
