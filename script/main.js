@@ -39,6 +39,9 @@ exports.__esModule = true;
 var fs = require("node:fs");
 var cheerio_1 = require("cheerio");
 var constant_1 = require("../src/constant");
+// 画像ダウンロードしたときに、404の場合は14byteくらいのレスポンスが返るため、判定用の閾値を設けてretryする
+var BYTE_LENGTH_THRESHOLD = 100;
+var RETRY_ERROR_MESSAGE = "RETRY";
 var fetchArticleList = function () { return __awaiter(void 0, void 0, void 0, function () {
     var res, data, err_1;
     return __generator(this, function (_a) {
@@ -63,11 +66,12 @@ var getCodePoint = function (emoji) {
     var _a;
     return (_a = emoji.codePointAt(0)) === null || _a === void 0 ? void 0 : _a.toString(16).toUpperCase();
 };
-var getFluentEmojiUrl = function (upperCaseEmojiName) {
+var getFluentEmojiUrl = function (upperCaseEmojiName, isAddDefaultPath // TODO: emojiによってパスが変わる。https://github.com/microsoft/fluentui-emoji を要確認
+) {
     var firstStrUpperSpaceCase = upperCaseEmojiName.charAt(0).toUpperCase() +
         upperCaseEmojiName.slice(1).toLowerCase();
     var lowerSnakeCase = upperCaseEmojiName.toLowerCase().replaceAll(" ", "_");
-    var url = "https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/".concat(encodeURI(firstStrUpperSpaceCase), "/3D/").concat(lowerSnakeCase, "_3d.png");
+    var url = "https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/".concat(encodeURI(firstStrUpperSpaceCase)).concat(isAddDefaultPath ? "/Default" : "", "/3D/").concat(lowerSnakeCase, "_3d.png");
     return url;
 };
 var getMicrosoftTeamsEmojiUrl = function (upperCaseEmojiName) { return __awaiter(void 0, void 0, void 0, function () {
@@ -97,6 +101,8 @@ var downloadFromImageUrl = function (url, name) { return __awaiter(void 0, void 
             case 1: return [4 /*yield*/, (_a.sent()).arrayBuffer()];
             case 2:
                 imageRes = _a.sent();
+                if (imageRes.byteLength < BYTE_LENGTH_THRESHOLD)
+                    return [2 /*return*/, RETRY_ERROR_MESSAGE];
                 savePath = "public/assets/".concat(name, ".png");
                 fs.writeFileSync(savePath, Buffer.from(imageRes), "binary");
                 return [2 /*return*/];
@@ -114,7 +120,7 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 articleList.forEach(function (_a) {
                     var emoji = _a.emoji, is_published = _a.is_published;
                     return __awaiter(void 0, void 0, void 0, function () {
-                        var codePoint, emojiDataSourceRes, emojiDataSource, hit, lowerSnakeCase, imageUrl, error_1;
+                        var codePoint, emojiDataSourceRes, emojiDataSource, hit, lowerSnakeCase, imageUrl, result, error_1;
                         return __generator(this, function (_b) {
                             switch (_b.label) {
                                 case 0:
@@ -133,7 +139,7 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                                     lowerSnakeCase = hit.name.toLowerCase().replaceAll(" ", "_");
                                     _b.label = 3;
                                 case 3:
-                                    _b.trys.push([3, 5, , 6]);
+                                    _b.trys.push([3, 8, , 9]);
                                     return [4 /*yield*/, getMicrosoftTeamsEmojiUrl(hit.name)];
                                 case 4:
                                     imageUrl = _b.sent();
@@ -141,13 +147,21 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                                         imageUrl = getFluentEmojiUrl(hit.name);
                                     if (!imageUrl)
                                         return [2 /*return*/];
-                                    downloadFromImageUrl(imageUrl, lowerSnakeCase);
-                                    return [3 /*break*/, 6];
+                                    return [4 /*yield*/, downloadFromImageUrl(imageUrl, lowerSnakeCase)];
                                 case 5:
+                                    result = _b.sent();
+                                    if (!(result === RETRY_ERROR_MESSAGE)) return [3 /*break*/, 7];
+                                    imageUrl = getFluentEmojiUrl(hit.name, true);
+                                    return [4 /*yield*/, downloadFromImageUrl(imageUrl, lowerSnakeCase)];
+                                case 6:
+                                    _b.sent();
+                                    _b.label = 7;
+                                case 7: return [3 /*break*/, 9];
+                                case 8:
                                     error_1 = _b.sent();
                                     console.error(error_1);
-                                    return [3 /*break*/, 6];
-                                case 6: return [2 /*return*/];
+                                    return [3 /*break*/, 9];
+                                case 9: return [2 /*return*/];
                             }
                         });
                     });
