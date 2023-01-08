@@ -1,16 +1,24 @@
+import Link from "next/link";
 import type { FC } from "react";
-import { staticPath } from "src/lib/$path";
+import { pagesPath, staticPath } from "src/lib/$path";
 import { PROFILE_LINKS } from "src/util/links";
 
 export const ProfileInfo: FC = () => {
   return (
     <div className="flex items-center justify-end gap-6">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className="block h-32 w-32 rounded-full bg-white shadow-[-2px_-2px_6px_#FFFFFF,_3px_3px_6px_rgba(174,_174,_192,_0.4)]"
-        src={staticPath.profile_jpg}
-        alt=""
-      />
+      <Link
+        href={pagesPath.about.$url()}
+        className="h-32 w-32 neumorphism-container-preset neumorphism-container-lg rounded-full before:rounded-full"
+      >
+        <div className="neumorphism-inner">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="block h-24 w-24 rounded-full"
+            src={staticPath.profile_jpg}
+            alt=""
+          />
+        </div>
+      </Link>
       <div className="flex flex-col gap-2">
         <p className="font-bold text-2xl drop-shadow-sm">Ishikawa Yuki</p>
         <p className="font-bold drop-shadow-sm">Software Developer.</p>
@@ -31,3 +39,15 @@ export const ProfileInfo: FC = () => {
     </div>
   );
 };
+
+// <Link
+// href={pagesPath.about.$url()}
+// className="rounded-full neumorphism-container-xl p-4 z-10 relative h-32 w-32 hover:scale-110 transition-all bg-neumorphism-active-bg"
+// >
+// {/* eslint-disable-next-line @next/next/no-img-element */}
+// <img
+//   className="block  rounded-full"
+//   src={staticPath.profile_jpg}
+//   alt=""
+// />
+// </Link>

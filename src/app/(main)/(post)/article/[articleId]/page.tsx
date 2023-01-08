@@ -54,14 +54,14 @@ const Page: NextPage<{ params: Props }> = async ({ params: { articleId } }) => {
           className={"w-32 h-32 object-cover block mx-auto drop-shadow-md"}
           alt="emoji"
         />
-        <h1 className="font-bold text-3xl text-center">{title}</h1>
-        <p className="text-center">{description}</p>
+        <h1 className="font-bold text-3xl text-center px-8">{title}</h1>
+        <p className="text-center px-8">{description}</p>
         <p className="text-sm text-center flex items-center gap-2 justify-center">
           <span>
             <IoMdCalendar className="text-gray-400 text-2xl" />
           </span>
-          <span>Published</span>
           <b>{articleId}</b>
+          <span>Published</span>
         </p>
       </div>
 

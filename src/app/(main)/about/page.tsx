@@ -53,13 +53,6 @@ const Page: NextPage = async () => {
                   })}
                 </div>
               </div>
-
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              {/* <img
-                src={staticPath.assets.$1st_place_medal_png}
-                alt="1st place medal"
-                className="block h-20 w-20"
-              /> */}
             </div>
           </div>
 
