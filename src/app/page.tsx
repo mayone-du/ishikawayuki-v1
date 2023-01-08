@@ -70,7 +70,7 @@ const Index: NextPage = () => {
             </Link>
           </li>
           <li>
-            <Link href={pagesPath.about.$url()}>
+            <Link href={pagesPath.diary.$url()}>
               <div className="w-40 h-40 neumorphism-container-preset neumorphism-container-xl">
                 <div className="neumorphism-inner">
                   <DiaryIcon className="text-7xl" />

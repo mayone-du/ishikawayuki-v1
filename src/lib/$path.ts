@@ -8,12 +8,19 @@ export const pagesPath = {
     }),
     $url: (url?: { hash?: string }) => ({ pathname: '/article' as const, hash: url?.hash })
   },
+  "diary": {
+    $url: (url?: { hash?: string }) => ({ pathname: '/diary' as const, hash: url?.hash })
+  },
   $url: (url?: { hash?: string }) => ({ pathname: '/' as const, hash: url?.hash })
 }
 
 export type PagesPath = typeof pagesPath
 
 export const staticPath = {
+  assets: {
+    clinking_beer_mugs_png: '/assets/clinking_beer_mugs.png',
+    tiger_face_png: '/assets/tiger_face.png'
+  },
   favicon_ico: '/favicon.ico',
   profile_jpg: '/profile.jpg'
 } as const

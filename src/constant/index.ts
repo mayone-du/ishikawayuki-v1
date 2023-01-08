@@ -18,4 +18,8 @@ export const CONSTANTS = {
   twitter: {
     PROFILE_URL: `https://twitter.com/mayo__dev`,
   },
+  emoji: {
+    DATA_SOURCE:
+      "https://cdn.jsdelivr.net/npm/emoji-datasource@14.0.0/emoji.json",
+  },
 } as const;

@@ -38,7 +38,7 @@ const fetchArticleList = async () => {
 
 // @ts-expect-error Server Component
 const Page: NextPage = async () => {
-  const data = await fetchArticleList();
+  const data = (await fetchArticleList()).reverse();
   const separated = data.reduce<{
     isPublished: ArticleList;
     isArchived: ArticleList;
@@ -71,10 +71,10 @@ const Page: NextPage = async () => {
             src={staticPath.profile_jpg}
             alt=""
           />
-          <div>
+          <div className="flex flex-col gap-2">
             <p className="font-bold text-2xl">Ishikawa Yuki</p>
             <p className="font-bold">Software Developer.</p>
-            <div className="flex justify-center gap-5 relative mt-4">
+            <div className="flex justify-center gap-5 relative mt-2">
               {PROFILE_ICONS.map(({ Icon, href }) => {
                 return (
                   <a key={href} href={href} target="_blank" rel="noreferrer">
@@ -94,7 +94,8 @@ const Page: NextPage = async () => {
       <div className="md:flex items-start gap-10">
         <div className="basis-3/4">
           <ul className="grid grid-cols-2 gap-10">
-            {separated.isPublished.map((item) => {
+            {data.map((item) => {
+              // {separated.isPublished.map((item) => {
               return (
                 <li key={item.title} className="col-span-1">
                   {/* TODO: pathpida v13以降では、オブジェクト形式では無理らしい？ */}
@@ -121,7 +122,10 @@ const Page: NextPage = async () => {
 
         <aside className="basis-1/4">
           <div className="neumorphism-container-xs flex items-center bg-neumorphism-bg p-[6px]">
-            <input className="transition shadow-[inset_-1px_-1px_1px_rgba(255,_255,_255,_0.7),_inset_1px_1px_2px_rgba(174,_174,_192,_0.2)] focus:shadow-[inset_-1px_-1px_3px_rgba(255,_255,_255,_0.9),_inset_1px_1px_2px_rgba(174,_174,_192,_0.5)] block h-full w-full p-2 bg-neumorphism-active-bg focus:outline-none rounded-lg" />
+            <input
+              className="transition shadow-[inset_-1px_-1px_1px_rgba(255,_255,_255,_0.7),_inset_1px_1px_2px_rgba(174,_174,_192,_0.2)] focus:shadow-[inset_-1px_-1px_3px_rgba(255,_255,_255,_0.9),_inset_1px_1px_2px_rgba(174,_174,_192,_0.5)] block h-full w-full p-2 bg-neumorphism-active-bg focus:outline-none rounded-lg"
+              placeholder="WIP:"
+            />
             <button>
               <div className="h-8 w-8 ml-2 neumorphism-container-preset neumorphism-container-sm">
                 <div className="neumorphism-inner">

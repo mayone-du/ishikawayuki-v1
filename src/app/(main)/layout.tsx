@@ -27,7 +27,7 @@ const HEADER_MENUS = [
   },
   {
     Icon: DiaryIcon,
-    href: pagesPath.$url(),
+    href: pagesPath.diary.$url(),
     label: "Diary",
   },
 ] as const;
@@ -38,14 +38,15 @@ const Header: FC = () => {
   const pathname = usePathname();
   return (
     <header
-      className={`transition-all md:px-44 px-20 fixed block top-0 w-full z-10 ${
+      className={`transition-all lg:px-44 md:px-32 sm:px-12 px-10 fixed block top-0 w-full z-10 ${
         isOver ? "backdrop-blur py-2" : "py-8"
       }`}
     >
       <nav>
         <ul className="flex items-center justify-start gap-6">
           {HEADER_MENUS.map(({ Icon, href, label }) => {
-            const isCurrentPage = href.pathname.startsWith(pathname ?? "");
+            const isCurrentPage =
+              href.pathname !== "/" && pathname?.includes(href.pathname);
             return (
               <li key={href.pathname}>
                 <Link href={href}>
@@ -62,7 +63,8 @@ const Header: FC = () => {
                       <Icon
                         className={`transition-all ${
                           isOver ? "text-xl" : "text-3xl"
-                        } ${isCurrentPage ? "" : "!text-gray-400"}`}
+                        }`}
+                        fill={isCurrentPage ? "currentColor" : "#808B9F"}
                       />
                     </div>
                   </div>
@@ -89,7 +91,9 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <div>
       <Header />
-      <main className="md:px-44 px-20 mt-40 mb-80">{children}</main>
+      <main className="lg:px-44 md:px-32 sm:px-12 px-10 mt-40 mb-80">
+        {children}
+      </main>
     </div>
   );
 };

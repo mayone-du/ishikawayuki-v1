@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
-import ReactMarkdown from "react-markdown";
+import { Markdown } from "src/components/Markdown";
 import { CONSTANTS } from "src/constant";
-import type { ArticleList } from "src/types";
+import type { ArticleList, EmojiApiResponse } from "src/types";
 
 type Props = { articleId: string };
 
@@ -27,28 +27,40 @@ const getArticle = async (articleId: Props["articleId"]) => {
 // @ts-expect-error Server Component
 const Page: NextPage<{ params: Props }> = async ({ params: { articleId } }) => {
   const data = await getArticle(articleId);
-  const [, , content] = data.split("---");
-  if (!content) return null;
+  const [, meta, content] = data.split("---");
+  if (!meta || !content) return null;
+
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const [, title, description, emoji] = meta.split("\n").map((str) => {
+    const deletable = str.substring(0, str.indexOf(":") + 1);
+    return str.replace(`${deletable} `, "");
+  });
+
+  const emojiRes = await fetch("http://localhost:3000/api/emoji", {
+    body: emoji,
+    method: "POST",
+  });
+
+  const emojiData: EmojiApiResponse = await emojiRes.json();
+  if ("error" in emojiData) return null;
 
   return (
     <div>
-      <div className="py-20 flex flex-col gap-8">
-        <h1 className="font-bold text-3xl text-center">TODO: Title</h1>
-        <p className="text-center">TODO: description</p>
+      <div className="pt-8 pb-20 flex flex-col gap-6">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={emojiData.imagePath}
+          className={"w-32 h-32 object-cover block mx-auto"}
+          alt="emoji"
+        />
+        <h1 className="font-bold text-3xl text-center">{title}</h1>
+        <p className="text-center">{description}</p>
+        <p className="text-sm text-center">{articleId}</p>
       </div>
 
-      <div className="flex gap-10 items-start">
-        <article className="basis-2/3 neumorphism-container-xl bg-neumorphism-bg rounded-xl p-4">
-          <div className="prose prose-headings:text-main-text prose-p:text-main-text prose-li:text-main-text">
-            <ReactMarkdown>{content}</ReactMarkdown>
-          </div>
-        </article>
-        <aside className="basis-1/3 neumorphism-container-md bg-neumorphism-bg">
-          <div className="p-4">
-            <p className="font-bold text-xl">Ishikawa Yuki</p>
-          </div>
-        </aside>
-      </div>
+      <article className="neumorphism-container-xl bg-neumorphism-bg rounded-xl p-12">
+        <Markdown markdownText={content} />
+      </article>
     </div>
   );
 };
