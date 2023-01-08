@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import { Markdown } from "src/components/Markdown";
 import { CONSTANTS } from "src/constant";
 import { staticPath } from "src/lib/$path";
@@ -11,7 +10,7 @@ const getProfileMarkdown = async () => {
 };
 
 // @ts-expect-error Server Component
-const Page: NextPage = async () => {
+const Page: FC = async () => {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const _data = await getProfileMarkdown();
   return (

@@ -1,10 +1,25 @@
-import type { NextPage } from "next";
 import { IoMdCalendar } from "react-icons/io";
 import { Markdown } from "src/components/Markdown";
 import { CONSTANTS } from "src/constant";
-import type { ArticleList, EmojiApiResponse } from "src/types";
+import type { ArticleList, EmojiDataSource } from "src/types";
 
-type Props = { articleId: string };
+type Props = {
+  params: { articleId: string };
+};
+
+const getCodePoint = (emoji: string) => {
+  return emoji.codePointAt(0)?.toString(16).toUpperCase();
+};
+
+const getEmojiFilePath = async (emoji: string) => {
+  const codePoint = getCodePoint(emoji);
+  const emojiRes = await fetch(CONSTANTS.emoji.DATA_SOURCE);
+  const data: EmojiDataSource = await emojiRes.json();
+  const hit = data.find((item) => item.unified === codePoint);
+  if (!hit) return;
+  const lowerSnakeCase = hit.name.toLowerCase().replaceAll(" ", "_");
+  return `/assets/${lowerSnakeCase}.png`;
+};
 
 export const generateStaticParams = async () => {
   const res = await fetch(CONSTANTS.github.ARTICLE_LIST_META_URL);
@@ -15,7 +30,7 @@ export const generateStaticParams = async () => {
   }));
 };
 
-const getArticle = async (articleId: Props["articleId"]) => {
+const getArticle = async (articleId: Props["params"]["articleId"]) => {
   const year = articleId.slice(0, 4);
   const res = await fetch(
     `https://raw.githubusercontent.com/mayone-du/blog-contents/main/articles/${year}/${articleId}.md`
@@ -25,8 +40,9 @@ const getArticle = async (articleId: Props["articleId"]) => {
   return data;
 };
 
+// @see https://github.com/vercel/next.js/issues/41884
 // @ts-expect-error Server Component
-const Page: NextPage<{ params: Props }> = async ({ params: { articleId } }) => {
+const Page: FC<Props> = async ({ params: { articleId } }) => {
   const data = await getArticle(articleId);
   const [, meta, content] = data.split("---");
   if (!meta || !content) return null;
@@ -37,20 +53,15 @@ const Page: NextPage<{ params: Props }> = async ({ params: { articleId } }) => {
     return str.replace(`${deletable} `, "");
   });
 
-  const emojiRes = await fetch(`${CONSTANTS.origin.HOST}/api/emoji`, {
-    body: emoji,
-    method: "POST",
-  });
-
-  const emojiData: EmojiApiResponse = await emojiRes.json();
-  if ("error" in emojiData) return null;
+  if (!emoji) return null;
+  const emojiPath = await getEmojiFilePath(emoji);
 
   return (
     <div>
       <div className="sm:pt-8 sm:pb-20 pt-4 pb-8 flex flex-col sm:gap-6 gap-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={emojiData.imagePath}
+          src={emojiPath}
           className={
             "sm:h-32 h-24 aspect-square object-cover block mx-auto drop-shadow-md"
           }

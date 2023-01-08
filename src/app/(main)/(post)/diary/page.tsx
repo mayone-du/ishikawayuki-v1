@@ -1,6 +1,6 @@
-import type { NextPage } from "next";
+import type { FC } from "react";
 
-const Page: NextPage = () => {
+const Page: FC = () => {
   return (
     <div className="w-full flex items-center justify-center">
       <div className="flex flex-col gap-12 mt-10">
