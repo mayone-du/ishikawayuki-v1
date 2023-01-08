@@ -13,7 +13,7 @@ export const CONSTANTS = {
     RESUME_MD_URL: `https://raw.githubusercontent.com/${GITHUB_USERNAME}/resume/main/docs/Resume.md`,
   },
   zenn: {
-    PROFILE_URL: `https://zenn.dev/mayo__dev`,
+    PROFILE_URL: `https://zenn.dev/mayo_dev`,
   },
   twitter: {
     PROFILE_URL: `https://twitter.com/mayo__dev`,
