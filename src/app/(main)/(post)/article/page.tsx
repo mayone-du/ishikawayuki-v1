@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import { ArticleIcon } from "src/components/Icon/ArticleIcon";
-import { Pagination } from "src/components/Pagination";
+// import { Pagination } from "src/components/Pagination";
 import { SearchBox } from "src/components/SearchBox";
 import { CONSTANTS } from "src/constant";
 import type { ArticleList } from "src/types";
@@ -35,23 +35,23 @@ const Page: NextPage = async () => {
   );
   return (
     <div>
-      <div className="mb-12">
+      <div className="sm:mb-12 mb-6">
         <PageSection
-          icon={<ArticleIcon className="text-8xl -mx-3" />}
+          icon={<ArticleIcon className="sm:text-8xl text-7xl -mx-3" />}
           title={"Article"}
           count={separated.isPublished.length}
         />
       </div>
 
-      <div className="lg:flex items-start gap-10 max-w-5xl mx-auto">
+      <div className="flex lg:flex-row flex-col-reverse lg:items-start sm:gap-10 gap-8 max-w-5xl mx-auto">
         <div className="basis-3/4">
-          <ul className="grid grid-cols-2 gap-10">
+          <ul className="grid sm:grid-cols-2 grid-cols-1 sm:gap-10 gap-8">
             {separated.isPublished.map((item) => {
               return (
                 <li key={item.title} className="col-span-1">
                   {/* TODO: pathpida v13以降では、オブジェクト形式では無理らしい？ */}
                   <Link href={`/article/${item.created_at}`}>
-                    <div className="h-32 neumorphism-container-preset neumorphism-container-lg">
+                    <div className="h-32 neumorphism-container-preset sm:neumorphism-container-lg neumorphism-container-md">
                       <div className="neumorphism-inner">
                         <p className="font-bold text-lg text-center line-clamp-1 px-12 mb-4 drop-shadow-lg">
                           {item.title}
@@ -67,7 +67,7 @@ const Page: NextPage = async () => {
             })}
           </ul>
 
-          <Pagination />
+          {/* <Pagination /> */}
         </div>
 
         <aside className="basis-1/4">

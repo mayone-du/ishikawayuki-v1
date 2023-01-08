@@ -19,19 +19,19 @@ const Page: NextPage = async () => {
       <div className="basis-3/4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          className="block h-40 w-40 rounded-full neumorphism-container-xl p-4 z-10 bg-neumorphism-active-bg relative"
+          className="block sm:h-40 h-28 aspect-square rounded-full neumorphism-container-xl sm:p-4 p-3 z-10 bg-neumorphism-active-bg relative sm:m-0 mx-auto"
           src={staticPath.profile_jpg}
           alt=""
         />
 
-        <div className="neumorphism-container-xl -translate-y-24 z-0 relative p-8 bg-neumorphism-bg ml-auto w-[calc(100%/8*7)]">
-          <div className="shadow-[inset_-10px_-10px_30px_#FFFFFF,inset_15px_15px_30px_rgba(174,_174,_192,_0.4)] rounded-lg py-8 px-24 bg-neumorphism-active-bg">
+        <div className="neumorphism-container-xl sm:-translate-y-28 -translate-y-12 z-0 relative sm:p-8 p-4 bg-neumorphism-bg sm:ml-auto mx-auto sm:w-11/12 w-full">
+          <div className="shadow-[inset_-10px_-10px_30px_#FFFFFF,inset_15px_15px_30px_rgba(174,_174,_192,_0.4)] rounded-lg py-8 sm:px-24 px-6 bg-neumorphism-active-bg">
             <div className="flex items-center">
               <div className="mx-auto flex flex-col items-center gap-4">
-                <h1 className="font-bold text-3xl drop-shadow-lg">
+                <h1 className="font-bold sm:text-3xl text-2xl drop-shadow-lg">
                   Ishikawa Yuki
                 </h1>
-                <p className="font-medium text-lg drop-shadow-lg">
+                <p className="font-medium sm:text-lg text-base drop-shadow-lg">
                   Software Developer.
                 </p>
                 <div className="flex gap-5 relative mt-2">
@@ -63,7 +63,7 @@ const Page: NextPage = async () => {
         </div>
       </div>
 
-      <aside className="basis-1/4">
+      <aside className="basis-1/4 translate-y-12">
         <div className="neumorphism-container-xl bg-neumorphism-active-bg">
           <div className="p-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}

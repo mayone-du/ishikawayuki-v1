@@ -4,5 +4,5 @@ import { RiBook2Fill } from "react-icons/ri";
 type Props = ComponentProps<typeof RiBook2Fill>;
 
 export const DiaryIcon: FC<Props> = ({ className = "", ...rest }) => {
-  return <RiBook2Fill className={`text-emerald-400 ${className}`} {...rest} />;
+  return <RiBook2Fill className={`text-cyan-500 ${className}`} {...rest} />;
 };

@@ -8,12 +8,12 @@ export const ProfileInfo: FC = () => {
     <div className="flex items-center justify-end gap-6">
       <Link
         href={pagesPath.about.$url()}
-        className="h-32 w-32 neumorphism-container-preset neumorphism-container-lg rounded-full before:rounded-full"
+        className="sm:h-32 h-24 aspect-square neumorphism-container-preset neumorphism-container-lg rounded-full before:rounded-full"
       >
         <div className="neumorphism-inner">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            className="block h-24 w-24 rounded-full"
+            className="block sm:h-24 h-16 aspect-square rounded-full"
             src={staticPath.profile_jpg}
             alt=""
           />

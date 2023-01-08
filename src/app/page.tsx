@@ -40,7 +40,7 @@ const Index: NextPage = () => {
           })}
         </div>
 
-        <ul className="flex items-center justify-center gap-12 mt-12">
+        <ul className="flex flex-col sm:flex-row items-center justify-center sm:gap-12 gap-8 mt-12">
           <li>
             <Link href={pagesPath.article.$url()}>
               <div className="w-40 h-40 neumorphism-container-preset neumorphism-container-xl">

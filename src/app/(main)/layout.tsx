@@ -34,16 +34,16 @@ const HEADER_MENUS = [
 
 const Header: FC = () => {
   const scroll = useScroll();
-  const isOver = scroll > 60;
+  const isOver = scroll > 55;
   const pathname = usePathname();
   return (
     <header
-      className={`transition-all lg:px-44 md:px-32 sm:px-12 px-10 fixed block top-0 w-full z-50 ${
+      className={`transition-all lg:px-44 md:px-32 sm:px-12 px-6 fixed block top-0 w-full z-50 ${
         isOver ? "backdrop-blur py-2" : "py-8"
       }`}
     >
       <nav>
-        <ul className="flex items-center justify-start gap-6">
+        <ul className="flex items-center sm:justify-start justify-center sm:gap-6 gap-4">
           {HEADER_MENUS.map(({ Icon, href, label }) => {
             const isCurrentPage =
               href.pathname !== "/" && pathname?.includes(href.pathname);
@@ -51,8 +51,8 @@ const Header: FC = () => {
               <li key={href.pathname}>
                 <Link href={href}>
                   <div
-                    className={`transition-all neumorphism-container-preset neumorphism-container-md rounded-full before:rounded-full ${
-                      isOver ? "h-12 w-12" : "h-16 w-16"
+                    className={`transition-all aspect-square neumorphism-container-preset neumorphism-container-md rounded-full before:rounded-full ${
+                      isOver ? "sm:h-12 h-10" : "sm:h-16 h-14"
                     } ${
                       isCurrentPage
                         ? "before:shadow-[inset_-4px_-4px_4px_rgba(255,_255,_255,_0.9),_inset_4px_4px_4px_rgba(174,_174,_192,_0.15)] shadow-none active:before:shadow-[inset_-4px_-4px_4px_rgba(255,_255,_255,_0.9),_inset_4px_4px_4px_rgba(174,_174,_192,_0.15)]"
@@ -70,7 +70,7 @@ const Header: FC = () => {
                   </div>
                   {!isOver && (
                     <p
-                      className={`text-center text-sm pt-2 ${
+                      className={`text-center sm:text-sm text-xs pt-2 ${
                         isCurrentPage ? "font-bold" : "font-medium"
                       }`}
                     >
@@ -91,7 +91,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <div>
       <Header />
-      <main className="lg:px-44 md:px-32 sm:px-12 px-10 mt-40 mb-40">
+      <main className="lg:px-44 md:px-32 sm:px-12 px-6 sm:mt-40 sm:mb-40 my-32">
         {children}
       </main>
     </div>

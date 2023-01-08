@@ -47,15 +47,19 @@ const Page: NextPage<{ params: Props }> = async ({ params: { articleId } }) => {
 
   return (
     <div>
-      <div className="pt-8 pb-20 flex flex-col gap-6">
+      <div className="sm:pt-8 sm:pb-20 pt-4 pb-8 flex flex-col sm:gap-6 gap-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={emojiData.imagePath}
-          className={"w-32 h-32 object-cover block mx-auto drop-shadow-md"}
+          className={
+            "sm:h-32 h-24 aspect-square object-cover block mx-auto drop-shadow-md"
+          }
           alt="emoji"
         />
-        <h1 className="font-bold text-3xl text-center px-8">{title}</h1>
-        <p className="text-center px-8">{description}</p>
+        <h1 className="font-bold sm:text-3xl text-2xl text-center sm:px-8 px-4">
+          {title}
+        </h1>
+        <p className="text-center sm:px-8 px-6">{description}</p>
         <p className="text-sm text-center flex items-center gap-2 justify-center">
           <span>
             <IoMdCalendar className="text-gray-400 text-2xl" />
@@ -65,7 +69,7 @@ const Page: NextPage<{ params: Props }> = async ({ params: { articleId } }) => {
         </p>
       </div>
 
-      <article className="neumorphism-container-xl bg-neumorphism-bg rounded-xl p-12">
+      <article className="neumorphism-container-xl bg-neumorphism-bg rounded-xl sm:p-12 p-6">
         <Markdown markdownText={content} />
       </article>
     </div>
