@@ -39,7 +39,7 @@ const Header: FC = () => {
   return (
     <header
       className={`transition-all lg:px-44 md:px-32 sm:px-12 px-6 fixed block top-0 w-full z-50 ${
-        isOver ? "backdrop-blur py-2" : "py-8"
+        isOver ? "backdrop-blur py-2" : "py-6"
       }`}
     >
       <nav>

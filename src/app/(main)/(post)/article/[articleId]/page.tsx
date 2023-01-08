@@ -58,7 +58,7 @@ const Page: FC<Props> = async ({ params: { articleId } }) => {
 
   return (
     <div>
-      <div className="sm:pt-8 sm:pb-20 pt-4 pb-8 flex flex-col sm:gap-6 gap-4">
+      <div className="pt-4 sm:pb-16 pb-8 flex flex-col sm:gap-6 gap-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={emojiPath}

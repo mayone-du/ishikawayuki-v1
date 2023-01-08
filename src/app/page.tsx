@@ -2,18 +2,16 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { ArticleIcon } from "src/components/Icon/ArticleIcon";
 import { DiaryIcon } from "src/components/Icon/DiaryIcon";
-import { pagesPath, staticPath } from "src/lib/$path";
+import { ProfileLink } from "src/components/ProfileLink";
+import { pagesPath } from "src/lib/$path";
 import { PROFILE_LINKS } from "src/util/links";
 
 const Index: NextPage = () => {
   return (
     <div className="mt-16 mb-10">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className="block h-32 mx-auto w-32 rounded-full bg-white shadow-[-2px_-2px_6px_#FFFFFF,_3px_3px_6px_rgba(174,_174,_192,_0.4)]"
-        src={staticPath.profile_jpg}
-        alt=""
-      />
+      <div className="flex items-center justify-center">
+        <ProfileLink />
+      </div>
       <div className="flex flex-col items-center gap-4 mt-6">
         <p className="text-center font-bold text-3xl drop-shadow-xl">
           Ishikawa Yuki
