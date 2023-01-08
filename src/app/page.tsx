@@ -2,30 +2,12 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { ArticleIcon } from "src/components/Icon/ArticleIcon";
 import { DiaryIcon } from "src/components/Icon/DiaryIcon";
-import { GitHubIcon } from "src/components/Icon/GitHubIcon";
-import { TwitterIcon } from "src/components/Icon/TwitterIcon";
-import { ZennIcon } from "src/components/Icon/ZennIcon";
-import { CONSTANTS } from "src/constant";
 import { pagesPath, staticPath } from "src/lib/$path";
-
-const PROFILE_ICONS = [
-  {
-    href: CONSTANTS.twitter.PROFILE_URL,
-    Icon: TwitterIcon,
-  },
-  {
-    href: CONSTANTS.github.PROFILE_URL,
-    Icon: GitHubIcon,
-  },
-  {
-    href: CONSTANTS.zenn.PROFILE_URL,
-    Icon: ZennIcon,
-  },
-] as const;
+import { PROFILE_LINKS } from "src/util/links";
 
 const Index: NextPage = () => {
   return (
-    <div className="my-10">
+    <div className="mt-16 mb-10">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         className="block h-32 mx-auto w-32 rounded-full bg-white shadow-[-2px_-2px_6px_#FFFFFF,_3px_3px_6px_rgba(174,_174,_192,_0.4)]"
@@ -45,7 +27,7 @@ const Index: NextPage = () => {
         </p>
 
         <div className="flex justify-center gap-5 relative mt-4">
-          {PROFILE_ICONS.map(({ Icon, href }) => {
+          {PROFILE_LINKS.map(({ Icon, href }) => {
             return (
               <a key={href} href={href} target="_blank" rel="noreferrer">
                 <div className="w-12 h-12 neumorphism-container-preset neumorphism-container-md">

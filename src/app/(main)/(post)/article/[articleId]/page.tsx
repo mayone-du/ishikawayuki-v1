@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { IoMdCalendar } from "react-icons/io";
 import { Markdown } from "src/components/Markdown";
 import { CONSTANTS } from "src/constant";
 import type { ArticleList, EmojiApiResponse } from "src/types";
@@ -50,12 +51,18 @@ const Page: NextPage<{ params: Props }> = async ({ params: { articleId } }) => {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={emojiData.imagePath}
-          className={"w-32 h-32 object-cover block mx-auto"}
+          className={"w-32 h-32 object-cover block mx-auto drop-shadow-md"}
           alt="emoji"
         />
         <h1 className="font-bold text-3xl text-center">{title}</h1>
         <p className="text-center">{description}</p>
-        <p className="text-sm text-center">{articleId}</p>
+        <p className="text-sm text-center flex items-center gap-2 justify-center">
+          <span>
+            <IoMdCalendar className="text-gray-400 text-2xl" />
+          </span>
+          <span>Published</span>
+          <b>{articleId}</b>
+        </p>
       </div>
 
       <article className="neumorphism-container-xl bg-neumorphism-bg rounded-xl p-12">

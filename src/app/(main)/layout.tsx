@@ -38,7 +38,7 @@ const Header: FC = () => {
   const pathname = usePathname();
   return (
     <header
-      className={`transition-all lg:px-44 md:px-32 sm:px-12 px-10 fixed block top-0 w-full z-10 ${
+      className={`transition-all lg:px-44 md:px-32 sm:px-12 px-10 fixed block top-0 w-full z-50 ${
         isOver ? "backdrop-blur py-2" : "py-8"
       }`}
     >
@@ -91,7 +91,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <div>
       <Header />
-      <main className="lg:px-44 md:px-32 sm:px-12 px-10 mt-40 mb-80">
+      <main className="lg:px-44 md:px-32 sm:px-12 px-10 mt-40 mb-40">
         {children}
       </main>
     </div>
