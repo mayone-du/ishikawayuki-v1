@@ -75,7 +75,7 @@ const Page: FC<Props> = async ({ params: { articleId } }) => {
           <span>
             <IoMdCalendar className="text-gray-400 text-2xl" />
           </span>
-          <b>{articleId}</b>
+          <span className="font-medium">{articleId}</span>
           <span>Published</span>
         </p>
       </div>

@@ -11,8 +11,12 @@ const getProfileMarkdown = async () => {
 
 // @ts-expect-error Server Component
 const Page: FC = async () => {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  const _data = await getProfileMarkdown();
+  const data = await getProfileMarkdown();
+
+  const [, , content] = data.split("---");
+
+  if (!content) return null;
+
   return (
     <div className="lg:flex items-start gap-10 max-w-5xl mx-auto">
       <div className="basis-3/4">
@@ -26,7 +30,7 @@ const Page: FC = async () => {
         <div className="neumorphism-container-xl sm:-translate-y-28 -translate-y-12 z-0 relative sm:p-8 p-4 bg-neumorphism-bg sm:ml-auto mx-auto sm:w-11/12 w-full">
           <div className="shadow-[inset_-10px_-10px_30px_#FFFFFF,inset_15px_15px_30px_rgba(174,_174,_192,_0.4)] rounded-lg py-8 sm:px-24 px-6 bg-neumorphism-active-bg">
             <div className="flex items-center">
-              <div className="mx-auto flex flex-col items-center gap-4">
+              <div className="mx-auto flex flex-col items-center sm:gap-4 gap-3 sm:pt-0 pt-2">
                 <h1 className="font-bold sm:text-3xl text-2xl drop-shadow-lg">
                   Ishikawa Yuki
                 </h1>
@@ -56,8 +60,7 @@ const Page: FC = async () => {
           </div>
 
           <div className="mt-8">
-            <Markdown markdownText={md} />
-            {/* <Markdown markdownText={data} /> */}
+            <Markdown markdownText={content} />
           </div>
         </div>
       </div>
@@ -83,20 +86,3 @@ const Page: FC = async () => {
 };
 
 export default Page;
-
-const md = `
-# About Me
-
-## ❤️‍🔥 Favorites things
-- Enginnering
-
-## 🤢 Dislikes
-- ...
-
-## 💻 Skill set
-- HTML / CSS / JavaScript
-
-
-## 📝 ... Now Writing ... 📝
-
-`;

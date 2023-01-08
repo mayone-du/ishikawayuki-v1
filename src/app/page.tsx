@@ -44,7 +44,7 @@ const Index: NextPage = () => {
               <div className="w-40 h-40 neumorphism-container-preset neumorphism-container-xl">
                 <div className="neumorphism-inner">
                   <ArticleIcon className="text-7xl" />
-                  <span className="font-bold text-xl">Articles</span>
+                  <span className="font-bold text-xl">Article</span>
                 </div>
               </div>
             </Link>
