@@ -108,7 +108,7 @@ const FamilyConents: FC = () => {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={staticPath.assets.sunflower_png}
-          className="block aspect-square h-20 mx-auto rounded-full p-4 bg-neumorphism-active-bg shadow-[inset_-1px_-1px_3px_rgba(255,_255,_255,_0.6),_inset_1px_1px_3px_rgba(174,_174,_192,_0.2)]"
+          className="block aspect-square h-20 mx-auto rounded-full p-4 bg-neumorphism-active-bg shadow-[inset_-2px_-2px_5px_rgba(255,_255,_255,_0.7),_inset_2px_2px_5px_rgba(174,_174,_192,_0.5)]"
           alt=""
         />
         <div className="p-2 text-center flex flex-col gap-2">
