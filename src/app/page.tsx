@@ -18,10 +18,10 @@ const Index: NextPage = () => {
                 href={pagesPath.about.$url()}
                 className="sm:h-40 h-32 aspect-square neumorphism-container-preset neumorphism-container-lg rounded-full before:rounded-full"
               >
-                <div className="neumorphism-inner">
+                <div className="neumorphism-inner sm:p-6 p-4">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    className="rounded-full sm:h-32 h-24"
+                    className="rounded-full"
                     src={staticPath.profile_jpg}
                     alt=""
                   />
@@ -53,12 +53,12 @@ const Index: NextPage = () => {
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 w-full sm:gap-12 gap-6">
-          <div className="col-span-1">
+        <div className="flex sm:flex-row flex-col-reverse w-full sm:gap-12 gap-6">
+          <div className="basis-1/2">
             <TabBox />
           </div>
 
-          <nav className="col-span-1 flex flex-col sm:gap-12 gap-6">
+          <nav className="basis-1/2 flex flex-col sm:gap-12 gap-6">
             <Link
               href={pagesPath.article.$url()}
               className="h-16 w-full neumorphism-container-preset neumorphism-container-lg bg-neumorphism-bg justify-between rounded-full before:rounded-full"
