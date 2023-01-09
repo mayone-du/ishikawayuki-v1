@@ -1,65 +1,102 @@
 import type { NextPage } from "next";
 import Link from "next/link";
+import { BsFillCaretRightFill } from "react-icons/bs";
 import { ArticleIcon } from "src/components/Icon/ArticleIcon";
 import { DiaryIcon } from "src/components/Icon/DiaryIcon";
-import { ProfileLink } from "src/components/ProfileLink";
-import { pagesPath } from "src/lib/$path";
+import { TabBox } from "src/components/TabBox";
+import { pagesPath, staticPath } from "src/lib/$path";
 import { PROFILE_LINKS } from "src/util/links";
 
 const Index: NextPage = () => {
   return (
-    <div className="mt-16 mb-10">
-      <div className="flex items-center justify-center">
-        <ProfileLink />
-      </div>
-      <div className="flex flex-col items-center gap-4 mt-6">
-        <p className="text-center font-bold text-3xl drop-shadow-xl">
-          Ishikawa Yuki
-        </p>
-
-        <p className="text-center font-medium text-xl drop-shadow-xl">
-          Software Developer.
-        </p>
-        <p className="text-center text-lg text-blue-500 font-medium drop-shadow-xl underline hover:no-underline hover:text-blue-400 transition">
-          <Link href={pagesPath.about.$url()}>Read More →</Link>
-        </p>
-
-        <div className="flex justify-center gap-5 relative mt-4">
-          {PROFILE_LINKS.map(({ Icon, href }) => {
-            return (
-              <a key={href} href={href} target="_blank" rel="noreferrer">
-                <div className="w-12 h-12 neumorphism-container-preset neumorphism-container-md">
-                  <div className="neumorphism-inner">
-                    <Icon className="absolute text-lg" />
-                  </div>
+    <div className="sm:mt-12 mt-6 sm:mx-0 mx-6">
+      <div className="flex flex-col sm:gap-12 gap-6 items-center mx-auto max-w-2xl">
+        <div className="neumorphism-container-lg sm:py-12 py-6 w-full bg-neumorphism-bg mx-auto">
+          <div className="flex justify-center flex-col sm:flex-row items-center sm:gap-16 gap-6">
+            <div>
+              <Link
+                href={pagesPath.about.$url()}
+                className="sm:h-40 h-32 aspect-square neumorphism-container-preset neumorphism-container-lg rounded-full before:rounded-full"
+              >
+                <div className="neumorphism-inner">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    className="rounded-full sm:h-32 h-24"
+                    src={staticPath.profile_jpg}
+                    alt=""
+                  />
                 </div>
-              </a>
-            );
-          })}
+              </Link>
+            </div>
+
+            <div className="flex flex-col sm:gap-4 gap-3">
+              <h1 className="font-bold sm:text-3xl text-2xl drop-shadow-lg">
+                Ishikawa Yuki
+              </h1>
+              <p className="font-medium sm:text-lg text-base drop-shadow-lg">
+                Software Developer.
+              </p>
+              <div className="flex gap-5 relative mt-2">
+                {PROFILE_LINKS.map(({ Icon, href }) => {
+                  return (
+                    <a key={href} href={href} target="_blank" rel="noreferrer">
+                      <div className="w-10 h-10 neumorphism-container-preset neumorphism-container-md rounded-full before:rounded-full">
+                        <div className="neumorphism-inner">
+                          <Icon className="absolute" />
+                        </div>
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </div>
 
-        <ul className="flex flex-col sm:flex-row items-center justify-center sm:gap-12 gap-8 mt-12">
-          <li>
-            <Link href={pagesPath.article.$url()}>
-              <div className="w-40 h-40 neumorphism-container-preset neumorphism-container-xl">
-                <div className="neumorphism-inner">
-                  <ArticleIcon className="text-7xl" />
-                  <span className="font-bold text-xl">Article</span>
+        <div className="grid sm:grid-cols-2 w-full sm:gap-12 gap-6">
+          <div className="col-span-1">
+            <TabBox />
+          </div>
+
+          <nav className="col-span-1 flex flex-col sm:gap-12 gap-6">
+            <Link
+              href={pagesPath.article.$url()}
+              className="h-16 w-full neumorphism-container-preset neumorphism-container-lg bg-neumorphism-bg justify-between rounded-full before:rounded-full"
+            >
+              <div className="neumorphism-inner flex-row justify-between w-full px-6">
+                <div className="flex gap-6">
+                  <ArticleIcon className="text-3xl" />
+                  <span className="font-bold text-xl drop-shadow">Article</span>
                 </div>
+                <BsFillCaretRightFill
+                  className="text-3xl text-neumorphism-bg scale-75"
+                  style={{
+                    filter:
+                      "drop-shadow(1px 3px 1.5px rgba(0,0,0,0.1)) drop-shadow(-1.8px -3.5px 1.8px rgba(255,255,255,1))",
+                  }}
+                />
               </div>
             </Link>
-          </li>
-          <li>
-            <Link href={pagesPath.diary.$url()}>
-              <div className="w-40 h-40 neumorphism-container-preset neumorphism-container-xl">
-                <div className="neumorphism-inner">
-                  <DiaryIcon className="text-7xl" />
-                  <span className="font-bold text-xl">Diary</span>
+            <Link
+              href={pagesPath.diary.$url()}
+              className="h-16 w-full neumorphism-container-preset neumorphism-container-lg bg-neumorphism-bg justify-between rounded-full before:rounded-full"
+            >
+              <div className="neumorphism-inner flex-row justify-between w-full px-6">
+                <div className="flex gap-6">
+                  <DiaryIcon className="text-3xl" />
+                  <span className="font-bold text-xl drop-shadow">Diary</span>
                 </div>
+                <BsFillCaretRightFill
+                  className="text-3xl text-neumorphism-bg scale-75"
+                  style={{
+                    filter:
+                      "drop-shadow(1px 3px 1.5px rgba(0,0,0,0.1)) drop-shadow(-1.8px -3.5px 1.8px rgba(255,255,255,1))",
+                  }}
+                />
               </div>
             </Link>
-          </li>
-        </ul>
+          </nav>
+        </div>
       </div>
     </div>
   );

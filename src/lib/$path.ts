@@ -38,6 +38,7 @@ export const staticPath = {
     building_construction_png: "/assets/building_construction.png",
     clinking_beer_mugs_png: "/assets/clinking_beer_mugs.png",
     dog_png: "/assets/dog.png",
+    sunflower_png: "/assets/sunflower.png",
     tiger_face_png: "/assets/tiger_face.png",
   },
   profile_jpg: "/profile.jpg",
