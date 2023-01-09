@@ -6,22 +6,9 @@ import { IoMdArrowRoundUp } from "react-icons/io";
 import { SiSpotify } from "react-icons/si";
 import { staticPath } from "src/lib/$path";
 
-const TAB_VALUES = ["Family", "Portfolio", "Like"] as const;
+import { Divider } from "./Divider";
 
-const PORTFOLIO_ITEMS = [
-  {
-    href: "https://mayoblog.vercel.app/",
-    label: "Blog. Used microCMS.",
-  },
-  {
-    href: "https://mayone-du.github.io/yew-blog",
-    label: "Blog. Written in Rust.",
-  },
-  {
-    href: "https://ishikawayuki.me",
-    label: "This Site.",
-  },
-] as const;
+const TAB_VALUES = ["Family", "Portfolio", "Like"] as const;
 
 export const TabBox: FC = () => {
   const [tabVal, setTabVal] = useState<typeof TAB_VALUES[number]>(
@@ -75,6 +62,20 @@ export const TabBox: FC = () => {
   );
 };
 
+const PORTFOLIO_ITEMS = [
+  {
+    href: "https://mayoblog.vercel.app/",
+    label: "Blog. Used microCMS.",
+  },
+  {
+    href: "https://mayone-du.github.io/yew-blog",
+    label: "Blog. Written in Rust.",
+  },
+  {
+    href: "https://ishikawayuki.me",
+    label: "This Site.",
+  },
+] as const;
 const PortfolioContents: FC = () => {
   return (
     <ul>
@@ -85,15 +86,13 @@ const PortfolioContents: FC = () => {
             <a
               href={href}
               target="_blank"
-              className="py-1.5 opacity-80 hover:opacity-100 transition-all px-2 flex justify-between w-full"
+              className="p-2 opacity-80 hover:opacity-100 transition-all flex justify-between items-center w-full"
               rel="noreferrer"
             >
-              <h3 className="font-bold text-xs">{label}</h3>
+              <div className="font-bold">{label}</div>
               <IoMdArrowRoundUp className="rotate-45" />
             </a>
-            {!isLast && (
-              <div className="w-full my-2 h-2 rounded-md bg-neumorphism-active-bg shadow-[inset_-1px_-1px_1px_rgba(255,_255,_255,_0.7),_inset_1px_1px_2px_rgba(174,_174,_192,_0.2)]" />
-            )}
+            {!isLast && <Divider />}
           </li>
         );
       })}
@@ -121,23 +120,51 @@ const FamilyConents: FC = () => {
     </div>
   );
 };
+
+const LIKE_ITEMS = [
+  {
+    href: "https://open.spotify.com/track/0XeyTwIqd2GPPcIFpM10IX?si=d095e697db9e41da",
+    name: "ETA",
+    author: "米津玄師",
+  },
+  {
+    href: "https://open.spotify.com/track/2JzRY7DvaqKqBrehWmsb3E?si=f2ab5804ac094302",
+    name: "Paper Flower",
+    author: "米津玄師",
+  },
+  {
+    href: "https://open.spotify.com/track/7lmF0obAl4R76B5QPhMJrZ?si=a608aa54c8b649b8",
+    name: "ホープランド",
+    author: "米津玄師",
+  },
+] as const;
+
 const LikeContents: FC = () => {
   return (
     <div>
-      <a
-        href="https://open.spotify.com/track/0XeyTwIqd2GPPcIFpM10IX?si=d095e697db9e41da"
-        target="_blank"
-        rel="noreferrer"
-        className="flex items-center gap-4 w-full p-2 opacity-80 hover:opacity-100 transition-all"
-      >
-        <SiSpotify className="text-xl text-[#1DB954]" />
-        <div className="flex items-center gap-6 w-full">
-          <div className="font-bold">ETA</div>
+      {LIKE_ITEMS.map(({ author, href, name }, i) => {
+        const isLast = PORTFOLIO_ITEMS.length - 1 === i;
+        return (
+          <div key={href}>
+            <a
+              href={href}
+              className="flex items-center gap-4 w-full p-2 opacity-80 hover:opacity-100 transition-all"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <SiSpotify className="text-xl text-[#1DB954]" />
+              <div className="flex items-center gap-6 w-full">
+                <div className="font-bold">{name}</div>
 
-          <div className="text-xs">by 米津玄師</div>
-        </div>
-        <IoMdArrowRoundUp className="text-xl rotate-45" />
-      </a>
+                <div className="text-xs">by {author}</div>
+              </div>
+              <IoMdArrowRoundUp className="text-xl rotate-45" />
+            </a>
+
+            {!isLast && <Divider />}
+          </div>
+        );
+      })}
     </div>
   );
 };
