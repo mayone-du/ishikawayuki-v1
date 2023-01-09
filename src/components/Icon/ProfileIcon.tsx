@@ -5,6 +5,6 @@ type Props = ComponentProps<typeof RiAccountCircleFill>;
 
 export const ProfileIcon: FC<Props> = ({ className = "", ...rest }) => {
   return (
-    <RiAccountCircleFill className={`text-sky-400 ${className}`} {...rest} />
+    <RiAccountCircleFill className={`text-[#7193c9] ${className}`} {...rest} />
   );
 };

@@ -8,6 +8,11 @@ import { TabBox } from "src/components/TabBox";
 import { pagesPath } from "src/lib/$path";
 import { PROFILE_LINKS } from "src/util/links";
 
+const MENU_ITEMS = [
+  { href: pagesPath.article.$url(), label: "Article", Icon: ArticleIcon },
+  { href: pagesPath.diary.$url(), label: "Diary", Icon: DiaryIcon },
+] as const;
+
 const Index: NextPage = () => {
   return (
     <div className="sm:mt-12 mt-6 sm:mx-0 mx-6">
@@ -46,42 +51,31 @@ const Index: NextPage = () => {
           </div>
 
           <nav className="basis-1/2 flex flex-col sm:gap-12 gap-6">
-            <Link
-              href={pagesPath.article.$url()}
-              className="h-16 w-full neumorphism-container-preset neumorphism-container-lg bg-neumorphism-bg justify-between rounded-full before:rounded-full"
-            >
-              <div className="neumorphism-inner flex-row justify-between w-full px-6">
-                <div className="flex gap-6">
-                  <ArticleIcon className="text-3xl" />
-                  <span className="font-bold text-xl drop-shadow">Article</span>
-                </div>
-                <BsFillCaretRightFill
-                  className="text-3xl text-neumorphism-bg scale-75"
-                  style={{
-                    filter:
-                      "drop-shadow(1px 3px 1.5px rgba(0,0,0,0.1)) drop-shadow(-1.8px -3.5px 1.8px rgba(255,255,255,1))",
-                  }}
-                />
-              </div>
-            </Link>
-            <Link
-              href={pagesPath.diary.$url()}
-              className="h-16 w-full neumorphism-container-preset neumorphism-container-lg bg-neumorphism-bg justify-between rounded-full before:rounded-full"
-            >
-              <div className="neumorphism-inner flex-row justify-between w-full px-6">
-                <div className="flex gap-6">
-                  <DiaryIcon className="text-3xl" />
-                  <span className="font-bold text-xl drop-shadow">Diary</span>
-                </div>
-                <BsFillCaretRightFill
-                  className="text-3xl text-neumorphism-bg scale-75"
-                  style={{
-                    filter:
-                      "drop-shadow(1px 3px 1.5px rgba(0,0,0,0.1)) drop-shadow(-1.8px -3.5px 1.8px rgba(255,255,255,1))",
-                  }}
-                />
-              </div>
-            </Link>
+            {MENU_ITEMS.map(({ Icon, href, label }) => {
+              return (
+                <Link
+                  key={href.pathname}
+                  href={href}
+                  className="h-16 w-full neumorphism-container-preset neumorphism-container-lg bg-neumorphism-bg justify-between rounded-full before:rounded-full"
+                >
+                  <div className="neumorphism-inner flex-row justify-between w-full px-6">
+                    <div className="flex gap-6">
+                      <Icon className="text-3xl" />
+                      <span className="font-bold text-xl drop-shadow">
+                        {label}
+                      </span>
+                    </div>
+                    <BsFillCaretRightFill
+                      className="text-3xl text-neumorphism-bg scale-75"
+                      style={{
+                        filter:
+                          "drop-shadow(1px 3px 1.5px rgba(0,0,0,0.1)) drop-shadow(-1.8px -3.5px 1.8px rgba(255,255,255,1))",
+                      }}
+                    />
+                  </div>
+                </Link>
+              );
+            })}
           </nav>
         </div>
       </div>

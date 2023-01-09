@@ -1,11 +1,10 @@
 "use client";
-import Link from "next/link";
 import type { FC } from "react";
 import { useLayoutEffect, useRef } from "react";
 import { useState } from "react";
 import { IoMdArrowRoundUp } from "react-icons/io";
 import { SiSpotify } from "react-icons/si";
-import { pagesPath, staticPath } from "src/lib/$path";
+import { staticPath } from "src/lib/$path";
 
 const TAB_VALUES = ["Family", "Portfolio", "Like"] as const;
 
@@ -113,17 +112,9 @@ const FamilyConents: FC = () => {
           alt=""
         />
         <div className="p-2 text-center flex flex-col gap-2">
-          <h2 className="text-lg font-bold">Himawari 🐶</h2>
+          <h2 className="text-lg font-bold">Himawari</h2>
           <p className="text-sm">
             A toy poodle that came from a rescued dog cafe.
-          </p>
-          <p>
-            <Link
-              href={pagesPath.$url()}
-              className="underline hover:no-underline transition-all opacity-100 hover:opacity-90 text-blue-400"
-            >
-              Read More →
-            </Link>
           </p>
         </div>
       </div>
