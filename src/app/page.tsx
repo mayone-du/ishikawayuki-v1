@@ -3,8 +3,9 @@ import Link from "next/link";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { ArticleIcon } from "src/components/Icon/ArticleIcon";
 import { DiaryIcon } from "src/components/Icon/DiaryIcon";
+import { ProfileLink } from "src/components/ProfileLink";
 import { TabBox } from "src/components/TabBox";
-import { pagesPath, staticPath } from "src/lib/$path";
+import { pagesPath } from "src/lib/$path";
 import { PROFILE_LINKS } from "src/util/links";
 
 const Index: NextPage = () => {
@@ -13,21 +14,7 @@ const Index: NextPage = () => {
       <div className="flex flex-col sm:gap-12 gap-6 items-center mx-auto max-w-2xl">
         <div className="neumorphism-container-lg sm:py-12 py-6 w-full bg-neumorphism-bg mx-auto">
           <div className="flex justify-center flex-col sm:flex-row items-center sm:gap-16 gap-6">
-            <div>
-              <Link
-                href={pagesPath.about.$url()}
-                className="sm:h-40 h-32 aspect-square neumorphism-container-preset neumorphism-container-lg rounded-full before:rounded-full"
-              >
-                <div className="neumorphism-inner sm:p-6 p-4">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className="rounded-full"
-                    src={staticPath.profile_jpg}
-                    alt=""
-                  />
-                </div>
-              </Link>
-            </div>
+            <ProfileLink />
 
             <div className="flex flex-col sm:gap-4 gap-3">
               <h1 className="font-bold sm:text-3xl text-2xl drop-shadow-lg">
