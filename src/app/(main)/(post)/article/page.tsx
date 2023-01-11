@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import { ArticleIcon } from "src/components/Icon/ArticleIcon";
-// import { Pagination } from "src/components/Pagination";
 import { SearchBox } from "src/components/SearchBox";
 import { CONSTANTS } from "src/constant";
 import type { ArticleList } from "src/types";
@@ -11,7 +10,7 @@ import { PageSection } from "../PageSection";
 const fetchArticleList = async () => {
   try {
     const res = await fetch(CONSTANTS.github.ARTICLE_LIST_META_URL, {
-      next: { revalidate: 60 * 60 * 24 },
+      next: { revalidate: 60 * 5 }, // 5 minutes
     });
     const data: ArticleList = await res.json();
     return data;
@@ -66,8 +65,6 @@ const Page: NextPage = async () => {
               );
             })}
           </ul>
-
-          {/* <Pagination /> */}
         </div>
 
         <aside className="basis-1/4">

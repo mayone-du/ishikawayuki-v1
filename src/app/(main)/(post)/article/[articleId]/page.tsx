@@ -22,7 +22,9 @@ const getEmojiFilePath = async (emoji: string) => {
 };
 
 export const generateStaticParams = async () => {
-  const res = await fetch(CONSTANTS.github.ARTICLE_LIST_META_URL);
+  const res = await fetch(CONSTANTS.github.ARTICLE_LIST_META_URL, {
+    next: { revalidate: 60 * 5 }, // 5 minutes
+  });
   const data: ArticleList = await res.json();
 
   return data.map((item) => ({
