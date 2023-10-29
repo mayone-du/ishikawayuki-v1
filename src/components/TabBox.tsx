@@ -11,7 +11,7 @@ import { Divider } from "./Divider";
 const TAB_VALUES = ["Family", "Portfolio", "Like"] as const;
 
 export const TabBox: FC = () => {
-  const [tabVal, setTabVal] = useState<typeof TAB_VALUES[number]>(
+  const [tabVal, setTabVal] = useState<(typeof TAB_VALUES)[number]>(
     TAB_VALUES[0]
   );
 
@@ -64,8 +64,8 @@ export const TabBox: FC = () => {
 
 const PORTFOLIO_ITEMS = [
   {
-    href: "https://mayoblog.vercel.app/",
-    label: "Blog. Used microCMS.",
+    href: "https://dpop.app",
+    label: "dpop.app",
   },
   {
     href: "https://mayone-du.github.io/yew-blog",

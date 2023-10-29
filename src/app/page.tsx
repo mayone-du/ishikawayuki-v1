@@ -3,12 +3,14 @@ import Link from "next/link";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { ArticleIcon } from "src/components/Icon/ArticleIcon";
 import { DiaryIcon } from "src/components/Icon/DiaryIcon";
+import { ProfileIcon } from "src/components/Icon/ProfileIcon";
 import { ProfileLink } from "src/components/ProfileLink";
 import { TabBox } from "src/components/TabBox";
 import { pagesPath } from "src/lib/$path";
 import { PROFILE_LINKS } from "src/util/links";
 
 const MENU_ITEMS = [
+  { href: pagesPath.about.$url(), label: "About", Icon: ProfileIcon },
   { href: pagesPath.article.$url(), label: "Article", Icon: ArticleIcon },
   { href: pagesPath.diary.$url(), label: "Diary", Icon: DiaryIcon },
 ] as const;
@@ -50,7 +52,7 @@ const Index: NextPage = () => {
             <TabBox />
           </div>
 
-          <nav className="basis-1/2 flex flex-col sm:gap-12 gap-6">
+          <nav className="basis-1/2 flex flex-col sm:gap-10 gap-6">
             {MENU_ITEMS.map(({ Icon, href, label }) => {
               return (
                 <Link
