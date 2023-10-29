@@ -17,7 +17,7 @@ const MENU_ITEMS = [
 
 const Index: NextPage = () => {
   return (
-    <div className="sm:mt-12 mt-6 sm:mx-0 mx-6">
+    <div className="sm:mt-24 mt-6 sm:mx-0 mx-6">
       <div className="flex flex-col sm:gap-12 gap-6 items-center mx-auto max-w-2xl">
         <div className="neumorphism-container-lg sm:py-12 py-6 w-full bg-neumorphism-bg mx-auto">
           <div className="flex justify-center flex-col sm:flex-row items-center sm:gap-16 gap-6">

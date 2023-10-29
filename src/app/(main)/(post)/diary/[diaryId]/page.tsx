@@ -4,7 +4,7 @@ import { CONSTANTS } from "src/constant";
 import type { ArticleList, EmojiDataSource } from "src/types";
 
 type Props = {
-  params: { articleId: string };
+  params: { diaryId: string };
 };
 
 const getCodePoint = (emoji: string) => {
@@ -28,14 +28,14 @@ export const generateStaticParams = async () => {
   const data: ArticleList = await res.json();
 
   return data.map((item) => ({
-    articleId: item.created_at,
+    diaryId: item.created_at,
   }));
 };
 
-const getArticle = async (articleId: Props["params"]["articleId"]) => {
-  const year = articleId.slice(0, 4);
+const getArticle = async (diaryId: Props["params"]["diaryId"]) => {
+  const year = diaryId.slice(0, 4);
   const res = await fetch(
-    `https://raw.githubusercontent.com/mayone-du/blog-contents/main/articles/${year}/${articleId}.md`
+    `https://raw.githubusercontent.com/mayone-du/blog-contents/main/articles/${year}/${diaryId}.md`
   );
 
   const data: string = await res.text();
@@ -44,8 +44,8 @@ const getArticle = async (articleId: Props["params"]["articleId"]) => {
 
 // @see https://github.com/vercel/next.js/issues/41884
 // @ts-expect-error Server Component
-const Page: FC<Props> = async ({ params: { articleId } }) => {
-  const data = await getArticle(articleId);
+const Page: FC<Props> = async ({ params: { diaryId } }) => {
+  const data = await getArticle(diaryId);
   const [, meta, content] = data.split("---");
   if (!meta || !content) return null;
 
@@ -77,7 +77,7 @@ const Page: FC<Props> = async ({ params: { articleId } }) => {
           <span>
             <IoMdCalendar className="text-gray-400 text-2xl" />
           </span>
-          <span className="font-medium">{articleId}</span>
+          <span className="font-medium">{diaryId}</span>
           <span>Published</span>
         </p>
       </div>

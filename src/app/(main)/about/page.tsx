@@ -74,10 +74,6 @@ const Page: FC = async () => {
               alt="building_construction"
               className="block h-32 w-32 mx-auto drop-shadow-md"
             />
-
-            <h3 className="text-center text-lg font-bold mt-2">
-              Development Now!
-            </h3>
           </div>
         </div>
       </aside>
