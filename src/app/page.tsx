@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import Link from "next/link";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { ArticleIcon } from "src/components/Icon/ArticleIcon";
@@ -15,7 +14,7 @@ const MENU_ITEMS = [
   { href: pagesPath.diary.$url(), label: "Diary", Icon: DiaryIcon },
 ] as const;
 
-const Index: NextPage = () => {
+const Index = () => {
   return (
     <div className="sm:mt-24 mt-6 sm:mx-0 mx-6">
       <div className="flex flex-col sm:gap-12 gap-6 items-center mx-auto max-w-2xl">

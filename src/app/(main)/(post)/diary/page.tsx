@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import Link from "next/link";
 import { DiaryIcon } from "src/components/Icon/DiaryIcon";
 import { SearchBox } from "src/components/SearchBox";
@@ -19,8 +18,7 @@ const fetchArticleList = async () => {
   }
 };
 
-// @ts-expect-error Server Component
-const Page: NextPage = async () => {
+const Page = async () => {
   const data = (await fetchArticleList()).reverse();
   const separated = data.reduce<{
     isPublished: ArticleList;

@@ -9,8 +9,7 @@ const getProfileMarkdown = async () => {
   return data;
 };
 
-// @ts-expect-error Server Component
-const Page: FC = async () => {
+const Page = async () => {
   const data = await getProfileMarkdown();
 
   const [, , content] = data.split("---");

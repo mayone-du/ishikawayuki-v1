@@ -1,8 +1,8 @@
 import "src/styles/globals.css";
 
-import { Rubik } from "@next/font/google";
+import { Rubik } from "next/font/google";
 
-const rubik = Rubik();
+const rubik = Rubik({ subsets: [] });
 
 import type { FC, PropsWithChildren } from "react";
 

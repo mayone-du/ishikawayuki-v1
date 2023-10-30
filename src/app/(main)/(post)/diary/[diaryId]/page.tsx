@@ -42,9 +42,7 @@ const getArticle = async (diaryId: Props["params"]["diaryId"]) => {
   return data;
 };
 
-// @see https://github.com/vercel/next.js/issues/41884
-// @ts-expect-error Server Component
-const Page: FC<Props> = async ({ params: { diaryId } }) => {
+const Page = async ({ params: { diaryId } }: Props) => {
   const data = await getArticle(diaryId);
   const [, meta, content] = data.split("---");
   if (!meta || !content) return null;

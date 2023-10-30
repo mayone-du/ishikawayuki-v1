@@ -1,11 +1,9 @@
-import type { NextPage } from "next";
 import Link from "next/link";
 import { ArticleIcon } from "src/components/Icon/ArticleIcon";
 
 import { PageSection } from "../PageSection";
 
-// @ts-expect-error Server Component
-const Page: NextPage = async () => {
+const Page = async () => {
   return (
     <div>
       <div className="sm:mb-12 mb-6">
