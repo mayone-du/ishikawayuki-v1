@@ -20,3 +20,9 @@ LogRocket.init('9srgdc/ishikawayuki-v1');
 Blog from `Himawari-chan`s point of view
 
 ### YouTube チャンネルの紹介
+
+### 自分の実績、経歴ページ
+
+- 個人宛のお仕事の依頼を受け付けるためのページや導線など
+- OSS の実績
+- 技術記事
