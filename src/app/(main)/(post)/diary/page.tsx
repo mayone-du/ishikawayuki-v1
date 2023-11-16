@@ -47,7 +47,7 @@ const Page = async () => {
               return (
                 <li key={item.title} className="col-span-1">
                   {/* TODO: pathpida v13以降では、オブジェクト形式では無理らしい？ */}
-                  <Link href={`/article/${item.created_at}`}>
+                  <Link href={`/diary/${item.created_at}`}>
                     <div className="h-32 neumorphism-container-preset sm:neumorphism-container-lg neumorphism-container-md">
                       <div className="neumorphism-inner">
                         <p className="font-bold text-lg text-center line-clamp-1 px-12 mb-4 drop-shadow-lg">
