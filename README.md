@@ -13,6 +13,12 @@ import LogRocket from 'logrocket';
 LogRocket.init('9srgdc/ishikawayuki-v1');
 ```
 
+## 絵文字画像の用意
+
+blog-contents 側で用意する
+
+## favicon の設定
+
 ## やりたいこと
 
 ### ひまちゃん目線のブログ
