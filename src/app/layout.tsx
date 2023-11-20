@@ -10,6 +10,7 @@ import { staticPath } from "src/lib/$path";
 const RootLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <html lang="ja">
+      {/* TODO: dynamic head content */}
       <title>Ishikawa Yuki</title>
       <meta charSet="UTF-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
