@@ -8,6 +8,7 @@ export const CONSTANTS = {
   github: {
     PROFILE_URL: `https://github.com/${GITHUB_USERNAME}`,
     RAW_MARKDOWN_URL: `${RAW_URL}/README.md`,
+    IMAGE_BASE_URL: `${RAW_URL}/images`,
     ARTICLE_LIST_META_URL: `${RAW_URL}/meta/article_list.json`,
     OTHER_LIST_META_URL: `${RAW_URL}/meta/other_list.json`,
     ARTICLE_BASE_URL: `${RAW_URL}/articles/`,

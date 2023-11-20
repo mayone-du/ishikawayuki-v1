@@ -1,24 +1,10 @@
 import { IoMdCalendar } from "react-icons/io";
 import { Markdown } from "src/components/Markdown";
 import { CONSTANTS } from "src/constant";
-import type { ArticleList, EmojiDataSource } from "src/types";
+import type { ArticleList } from "src/types";
 
 type Props = {
   params: { diaryId: string };
-};
-
-const getCodePoint = (emoji: string) => {
-  return emoji.codePointAt(0)?.toString(16).toUpperCase();
-};
-
-const getEmojiFilePath = async (emoji: string) => {
-  const codePoint = getCodePoint(emoji);
-  const emojiRes = await fetch(CONSTANTS.emoji.DATA_SOURCE);
-  const data: EmojiDataSource = await emojiRes.json();
-  const hit = data.find((item) => item.unified === codePoint);
-  if (!hit) return;
-  const lowerSnakeCase = hit.name.toLowerCase().replaceAll(" ", "_");
-  return `/assets/${lowerSnakeCase}.png`;
 };
 
 export const generateStaticParams = async () => {
@@ -48,13 +34,14 @@ const Page = async ({ params: { diaryId } }: Props) => {
   if (!meta || !content) return null;
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  const [, title, description, emoji] = meta.split("\n").map((str) => {
-    const deletable = str.substring(0, str.indexOf(":") + 1);
-    return str.replace(`${deletable} `, "");
-  });
+  const [, title, description, _emoji, emojiImage] = meta
+    .split("\n")
+    .map((str) => {
+      const deletable = str.substring(0, str.indexOf(":") + 1);
+      return str.replace(`${deletable} `, "");
+    });
 
-  if (!emoji) return null;
-  const emojiPath = await getEmojiFilePath(emoji);
+  const emojiPath = `${CONSTANTS.github.IMAGE_BASE_URL}/emoji/${emojiImage}`;
 
   return (
     <div>
