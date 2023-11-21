@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { IoMdCalendar } from "react-icons/io";
 import { Markdown } from "src/components/Markdown";
 import { CONSTANTS } from "src/constant";
@@ -28,18 +29,42 @@ const getArticle = async (diaryId: Props["params"]["diaryId"]) => {
   return data;
 };
 
-const Page = async ({ params: { diaryId } }: Props) => {
-  const data = await getArticle(diaryId);
-  const [, meta, content] = data.split("---");
-  if (!meta || !content) return null;
+export const generateMetadata = async ({
+  params: { diaryId },
+}: Props): Promise<Metadata> => {
+  const article = await getArticle(diaryId);
+  const { description, emojiImage, title } = getArticleMetadata(article);
+  const emojiPath = `${CONSTANTS.github.IMAGE_BASE_URL}/emoji/${emojiImage}`;
+  return {
+    title: title,
+    description: description,
+    icons: [emojiPath],
+  };
+};
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  const [, title, description, _emoji, emojiImage] = meta
+const getArticleMetadata = (article: string) => {
+  const [, meta, content] = article.split("---");
+  if (!meta) throw new Error("meta is not found");
+  const [, title, description, emoji, emojiImage] = meta
     .split("\n")
     .map((str) => {
       const deletable = str.substring(0, str.indexOf(":") + 1);
       return str.replace(`${deletable} `, "");
     });
+
+  return {
+    title,
+    description,
+    emojiImage,
+    content,
+    emoji,
+  };
+};
+
+const Page = async ({ params: { diaryId } }: Props) => {
+  const data = await getArticle(diaryId);
+  const { content, description, emojiImage, title } = getArticleMetadata(data);
+  if (!content) return null;
 
   const emojiPath = `${CONSTANTS.github.IMAGE_BASE_URL}/emoji/${emojiImage}`;
 
@@ -70,6 +95,9 @@ const Page = async ({ params: { diaryId } }: Props) => {
       <article className="neumorphism-container-xl bg-neumorphism-bg rounded-xl sm:p-12 p-6">
         <Markdown markdownText={content} />
       </article>
+
+      {/* TODO: reaction */}
+      {/* TODO: prev/next contents */}
     </div>
   );
 };
