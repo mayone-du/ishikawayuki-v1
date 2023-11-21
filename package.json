@@ -7,9 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate:path": "pathpida --ignorePath .gitignore --enableStatic",
-    "tsc:script": "tsc script/main.ts",
-    "generate:emoji": "node script/main.js"
+    "generate:path": "pathpida --ignorePath .gitignore --enableStatic"
   },
   "dependencies": {
     "next": "13.5.4",
