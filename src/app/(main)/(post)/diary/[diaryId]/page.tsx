@@ -71,12 +71,10 @@ const getEmojiImageUrl = async (emoji: string) => {
 const getArticleMetadata = (article: string) => {
   const [, meta, content] = article.split("---");
   if (!meta) throw new Error("meta is not found");
-  const [, title, description, emoji, emojiImage] = meta
-    .split("\n")
-    .map((str) => {
-      const deletable = str.substring(0, str.indexOf(":") + 1);
-      return str.replace(`${deletable} `, "");
-    });
+  const [, title, description, emoji] = meta.split("\n").map((str) => {
+    const deletable = str.substring(0, str.indexOf(":") + 1);
+    return str.replace(`${deletable} `, "");
+  });
 
   if (!title || !description || !emoji || !content)
     throw new Error("metadta not found");
@@ -84,7 +82,6 @@ const getArticleMetadata = (article: string) => {
   return {
     title,
     description,
-    emojiImage,
     content,
     emoji,
   };
