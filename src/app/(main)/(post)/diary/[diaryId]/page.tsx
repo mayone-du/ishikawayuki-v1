@@ -1,8 +1,9 @@
+import * as cheerio from "cheerio";
 import type { Metadata } from "next";
 import { IoMdCalendar } from "react-icons/io";
 import { Markdown } from "src/components/Markdown";
 import { CONSTANTS } from "src/constant";
-import type { ArticleList } from "src/types";
+import type { ArticleList, EmojiDataSource } from "src/types";
 
 type Props = {
   params: { diaryId: string };
@@ -33,13 +34,38 @@ export const generateMetadata = async ({
   params: { diaryId },
 }: Props): Promise<Metadata> => {
   const article = await getArticle(diaryId);
-  const { description, emojiImage, title } = getArticleMetadata(article);
-  const emojiPath = `${CONSTANTS.github.IMAGE_BASE_URL}/emoji/${emojiImage}`;
+  const { description, emoji, title } = getArticleMetadata(article);
+
+  const url = await getEmojiImageUrl(emoji);
+
   return {
     title: title,
     description: description,
-    icons: [emojiPath],
+    icons: [url],
   };
+};
+
+const getEmojiCodePoint = (emoji: string) => {
+  return emoji.codePointAt(0)?.toString(16).toUpperCase();
+};
+
+const getEmojiImageUrl = async (emoji: string) => {
+  const codePoint = getEmojiCodePoint(emoji);
+  const emojiDataSourceRes = await fetch(CONSTANTS.emoji.DATA_SOURCE);
+  const emojiDataSource = (await emojiDataSourceRes.json()) as EmojiDataSource;
+  const hit = emojiDataSource.find((item) => item.unified === codePoint);
+  if (!hit) return "";
+
+  const emojiLowerHyphenCase = hit.name.toLowerCase().replaceAll(" ", "-");
+  const searchUrl = `https://emojipedia.org/microsoft-teams/15.0/${emojiLowerHyphenCase}`;
+
+  const res = await fetch(searchUrl);
+  const html = await res.text();
+  const $ = cheerio.load(html);
+  const imageUrl = $(
+    'img[src*="https://em-content.zobj.net/source/microsoft-teams/363/"]'
+  ).attr("src");
+  return imageUrl || "";
 };
 
 const getArticleMetadata = (article: string) => {
@@ -52,6 +78,9 @@ const getArticleMetadata = (article: string) => {
       return str.replace(`${deletable} `, "");
     });
 
+  if (!title || !description || !emoji || !content)
+    throw new Error("metadta not found");
+
   return {
     title,
     description,
@@ -63,17 +92,17 @@ const getArticleMetadata = (article: string) => {
 
 const Page = async ({ params: { diaryId } }: Props) => {
   const data = await getArticle(diaryId);
-  const { content, description, emojiImage, title } = getArticleMetadata(data);
+  const { content, description, emoji, title } = getArticleMetadata(data);
   if (!content) return null;
 
-  const emojiPath = `${CONSTANTS.github.IMAGE_BASE_URL}/emoji/${emojiImage}`;
+  const emojiUrl = await getEmojiImageUrl(emoji);
 
   return (
     <div>
       <div className="pt-4 sm:pb-16 pb-8 flex flex-col sm:gap-6 gap-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={emojiPath}
+          src={emojiUrl}
           className={
             "sm:h-32 h-24 aspect-square object-cover block mx-auto drop-shadow-md"
           }

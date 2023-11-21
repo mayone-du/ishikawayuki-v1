@@ -46,7 +46,7 @@ const Header: FC = () => {
         <ul className="flex items-center sm:justify-start justify-center sm:gap-6 gap-4">
           {HEADER_MENUS.map(({ Icon, href, label }) => {
             const isCurrentPage =
-              href.pathname !== "/" && pathname?.includes(href.pathname);
+              href.pathname !== "/" && pathname.includes(href.pathname);
             return (
               <li key={href.pathname}>
                 <Link href={href}>
