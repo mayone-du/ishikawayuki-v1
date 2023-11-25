@@ -13,6 +13,9 @@ import LogRocket from 'logrocket';
 LogRocket.init('9srgdc/ishikawayuki-v1');
 ```
 
+- 絵文字画像の取得方法の変更
+  - emojipedia は unified と emoji の shortname を組み合わせた画像名っぽいので、スクレイピングせずそれを直接読み込む
+
 ## 絵文字画像の用意
 
 blog-contents 側で用意する
@@ -36,3 +39,5 @@ Blog from `Himawari-chan`s point of view
 ## 好きな料理のカテゴリごとの一番美味かったものの写真とか載せる
 
 → そういうアプリもありかも
+
+## 絵文字から画像を取得するための関数をライブラリ化して npm で公開

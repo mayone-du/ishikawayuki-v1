@@ -1,14 +1,13 @@
-import * as cheerio from "cheerio";
 import type { Metadata } from "next";
 import { IoMdCalendar } from "react-icons/io";
 import { Markdown } from "src/components/Markdown";
 import { CONSTANTS } from "src/constant";
-import type { ArticleList, EmojiDataSource } from "src/types";
+import { getEmojiImage } from "src/lib/emoji/get-emoji-image";
+import type { ArticleList } from "src/types";
 
 type Props = {
   params: { diaryId: string };
 };
-
 export const generateStaticParams = async () => {
   const res = await fetch(CONSTANTS.github.ARTICLE_LIST_META_URL, {
     next: { revalidate: 60 * 5 }, // 5 minutes
@@ -36,36 +35,13 @@ export const generateMetadata = async ({
   const article = await getArticle(diaryId);
   const { description, emoji, title } = getArticleMetadata(article);
 
-  const url = await getEmojiImageUrl(emoji);
+  const url = await getEmojiImage(emoji);
 
   return {
     title: title,
     description: description,
     icons: [url],
   };
-};
-
-const getEmojiCodePoint = (emoji: string) => {
-  return emoji.codePointAt(0)?.toString(16).toUpperCase();
-};
-
-const getEmojiImageUrl = async (emoji: string) => {
-  const codePoint = getEmojiCodePoint(emoji);
-  const emojiDataSourceRes = await fetch(CONSTANTS.emoji.DATA_SOURCE);
-  const emojiDataSource = (await emojiDataSourceRes.json()) as EmojiDataSource;
-  const hit = emojiDataSource.find((item) => item.unified === codePoint);
-  if (!hit) return "";
-
-  const emojiLowerHyphenCase = hit.name.toLowerCase().replaceAll(" ", "-");
-  const searchUrl = `https://emojipedia.org/microsoft-teams/15.0/${emojiLowerHyphenCase}`;
-
-  const res = await fetch(searchUrl);
-  const html = await res.text();
-  const $ = cheerio.load(html);
-  const imageUrl = $(
-    'img[src*="https://em-content.zobj.net/source/microsoft-teams/363/"]'
-  ).attr("src");
-  return imageUrl || "";
 };
 
 const getArticleMetadata = (article: string) => {
@@ -92,7 +68,7 @@ const Page = async ({ params: { diaryId } }: Props) => {
   const { content, description, emoji, title } = getArticleMetadata(data);
   if (!content) return null;
 
-  const emojiUrl = await getEmojiImageUrl(emoji);
+  const emojiUrl = await getEmojiImage(emoji);
 
   return (
     <div>
@@ -103,7 +79,7 @@ const Page = async ({ params: { diaryId } }: Props) => {
           className={
             "sm:h-32 h-24 aspect-square object-cover block mx-auto drop-shadow-md"
           }
-          alt="emoji"
+          alt={emoji}
         />
         <h1 className="font-bold sm:text-3xl text-2xl text-center sm:px-8 px-4">
           {title}

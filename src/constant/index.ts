@@ -23,7 +23,8 @@ export const CONSTANTS = {
   },
   emoji: {
     DATA_SOURCE:
-      "https://cdn.jsdelivr.net/npm/emoji-datasource@latest/emoji.json",
+      "https://cdn.jsdelivr.net/npm/emoji-datasource@14.0/emoji.json",
+    // "https://cdn.jsdelivr.net/npm/emoji-datasource@latest/emoji.json",
   },
   origin: {
     HOST:
