@@ -133,9 +133,9 @@ const LIKE_ITEMS = [
     author: "米津玄師",
   },
   {
-    href: "https://open.spotify.com/track/7lmF0obAl4R76B5QPhMJrZ?si=a608aa54c8b649b8",
-    name: "ホープランド",
-    author: "米津玄師",
+    href: "https://open.spotify.com/intl-ja/track/4g6kzLvk4eyEMiHgjP1ykS?si=e71c4c3216ac41d7",
+    name: "正夢",
+    author: "SEKAI NO OWARI",
   },
 ] as const;
 
@@ -153,7 +153,7 @@ const LikeContents: FC = () => {
               rel="noreferrer"
             >
               <SiSpotify className="text-xl text-[#1DB954]" />
-              <div className="flex items-center gap-6 w-full">
+              <div className="flex items-center justify-between gap-6 w-full">
                 <div className="font-bold">{name}</div>
 
                 <div className="text-xs">by {author}</div>
