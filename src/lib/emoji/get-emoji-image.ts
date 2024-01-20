@@ -45,9 +45,9 @@ export const getEmojiImage = async (emoji: string) => {
   const emojiDataSourceRes = await fetch(CONSTANTS.emoji.DATA_SOURCE);
   const emojiDataSource = (await emojiDataSourceRes.json()) as EmojiDataSource;
   // e.g) RIGHT-FACING FIST, CONFUSED FACE
-  const hit = emojiDataSource.find(
-    (item) => item.name === emojiData.name.toUpperCase()
-  );
+  const hit = emojiDataSource.find((item) => {
+    return item.name === emojiData.name.toUpperCase();
+  });
 
   // 文字列から::以降の文字があれば取得
   const skinTone = emojiData.shortcodes.split("::")[1]?.slice(0, -1); // 最後の:も削除

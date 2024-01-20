@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import type { ChangeEventHandler, FC } from "react";
 import { useState } from "react";
@@ -47,10 +48,7 @@ export const SearchBox: FC<Props> = ({ articleList }) => {
           <ul className="p-1 flex flex-col gap-4">
             {matchedArticleList.map((item) => {
               return (
-                <Link
-                  key={item.created_at}
-                  href={`/article/${item.created_at}`}
-                >
+                <Link key={item.created_at} href={`/diary/${item.created_at}`}>
                   <li className="neumorphism-container-md">
                     <div className="text-left p-2 text-sm">
                       {[...item.title].map((str, i) => {
@@ -65,7 +63,6 @@ export const SearchBox: FC<Props> = ({ articleList }) => {
                           </span>
                         );
                       })}
-                      {/* {item.title} */}
                     </div>
                   </li>
                 </Link>
