@@ -15,7 +15,7 @@ export const Markdown: FC<Props> = ({ markdownText }) => {
             const type = (props.children[0] as any).type;
             if (typeof type === "function") {
               return (
-                <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
+                <div className="grid my-4 md:grid-cols-4 grid-cols-2 gap-4">
                   {props.children}
                 </div>
               );
