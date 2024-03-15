@@ -22,7 +22,12 @@ export const generateStaticParams = async () => {
 const getArticle = async (diaryId: Props["params"]["diaryId"]) => {
   const year = diaryId.slice(0, 4);
   const res = await fetch(
-    `https://raw.githubusercontent.com/mayone-du/blog-contents/main/articles/${year}/${diaryId}.md`
+    `https://raw.githubusercontent.com/mayone-du/blog-contents/main/articles/${year}/${diaryId}.md`,
+    {
+      next: {
+        revalidate: 60 * 5, // 5 minutes
+      },
+    }
   );
 
   const data: string = await res.text();
