@@ -21,7 +21,7 @@ const Page = async () => {
       <div className="basis-3/4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          className="block sm:h-40 h-28 aspect-square rounded-full neumorphism-container-xl sm:p-4 p-3 z-10 bg-neumorphism-active-bg relative sm:m-0 mx-auto"
+          className="block sm:h-40 h-28 object-cover aspect-square rounded-full neumorphism-container-xl sm:p-4 p-3 z-10 bg-neumorphism-active-bg relative sm:m-0 mx-auto"
           src={staticPath.profile_jpg}
           alt=""
         />

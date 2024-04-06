@@ -11,7 +11,7 @@ export const ProfileLink: FC = () => {
       <div className="neumorphism-inner">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          className="block sm:h-28 h-20 aspect-square rounded-full"
+          className="block object-cover sm:h-28 h-20 aspect-square rounded-full"
           src={staticPath.profile_jpg}
           alt=""
         />
