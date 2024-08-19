@@ -123,8 +123,8 @@ const FamilyConents: FC = () => {
 
 const LIKE_ITEMS = [
   {
-    href: "https://open.spotify.com/track/0XeyTwIqd2GPPcIFpM10IX?si=d095e697db9e41da",
-    name: "ETA",
+    href: "https://open.spotify.com/intl-ja/track/3KBlutfYq0kxQWl2P9t4Ht?si=be69e896a2f6406b",
+    name: "がらくた",
     author: "米津玄師",
   },
   {
